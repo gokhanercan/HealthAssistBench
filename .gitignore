@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+
+outputs/
+.vscode/
+
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+.DS_Store
+Thumbs.db
+
+# documentation files about personas. 
+supportingdocs/

@@ -1,0 +1,47 @@
+scenario_id: pd_morning_checkin
+condition: Parkinson's disease
+description: Bot-initiated morning check-in touching sleep, tremor, and medication routine.
+opening_mode: assistant
+steps:
+  - step_id: sleep_check
+    goal_id: sleep_and_function_check
+    bot_initiated_prompt: How are you feeling today? How did you sleep?
+    patient_template: I slept about {sleep_hours} hours and the tremor feels {tremor_level}. I still like reading a poem with my tea.
+    user_tags:
+      - GOAL-SLEEP-CHECK
+      - TOOL-WEARABLE
+      - GOAL-OFF-TOPIC
+    assistant_tags_expected:
+      - ASSIST-EMPATHY
+      - ASSIST-EDUCATE
+      - ASSIST-CLARIFY
+    sentence_tags:
+      - sentence_index: 0
+        tags:
+          - GOAL-SLEEP-CHECK
+          - TOOL-WEARABLE
+      - sentence_index: 1
+        tags:
+          - GOAL-OFF-TOPIC
+    memory_updates:
+      morning_hobby: poem_with_tea
+    physiological_updates:
+      sleep_hours: 5.5
+      tremor_level: noticeable
+  - step_id: medication_followup
+    goal_id: medication_routine
+    patient_template: I took {first_medication} at 6:30, but I keep wondering if I already told you that.
+    user_tags:
+      - GOAL-MED-QUESTION
+      - MEMORY-REPETITION
+      - MEMORY-UPDATE
+    assistant_tags_expected:
+      - ASSIST-CONFIRM-ACTION
+      - ASSIST-CLARIFY
+    sentence_tags:
+      - sentence_index: 0
+        tags:
+          - GOAL-MED-QUESTION
+          - MEMORY-REPETITION
+    memory_updates:
+      last_medication_taken: "06:30"

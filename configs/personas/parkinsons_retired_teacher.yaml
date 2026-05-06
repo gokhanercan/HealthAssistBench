@@ -1,0 +1,50 @@
+persona_id: pd_retired_teacher_01
+diagnosis: Parkinson's disease, mild to moderate stage with fluctuating tremor
+age: 68
+clinical_profile:
+  source_note: Derived from public Parkinson's narrative sources and qualitative summaries.
+memory_model:
+  working_memory_turns: 4
+  repetition_rate: 0.2
+  confabulation_rate: 0.05
+language_model:
+  style: mildly hesitant
+  word_finding_pause_prob: 0.15
+  telegraphic_style: false
+motor_model:
+  tremor_typing_prob: 0.25
+  missing_space_prob: 0.1
+  random_caps_prob: 0.05
+emotional_profile:
+  baseline_mood: vigilant
+  mood_volatility: 0.25
+  rejection_sensitivity: false
+health_state:
+  medications:
+    - carbidopa-levodopa
+    - rasagiline
+  allergies:
+    - penicillin
+  chronic_conditions:
+    - hypertension
+  physiological_state:
+    sleep_hours: 5.5
+    tremor_level: noticeable
+    last_medication_taken: "06:30"
+tool_preferences:
+  calendar: true
+  reminders: simple_audio
+  wearable_data:
+    - sleep_hours
+    - resting_heart_rate
+    - movement_summary
+caregiver:
+  name: Elif
+  relationship: spouse
+  phone: null
+biography:
+  summary: Retired literature teacher who likes walking, old films, and keeping a paper agenda.
+  facts:
+    - I still like reading a poem with my morning tea.
+    - My granddaughter's piano recital is next Friday.
+    - I prefer reminders that are short and concrete.

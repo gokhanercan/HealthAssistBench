@@ -1,0 +1,42 @@
+2. Persona & State Model (The “Brain” of the Simulator)
+Each persona is a data structure, not just a paragraph. It drives behaviour deterministically with stochastic variation.
+
+text
+Persona:
+  id: "alz_moderate_02"
+  diagnosis: "Alzheimer’s disease, moderate"
+  clinical_profile:
+    memory_model: 
+      working_memory_capacity: turns (2)
+      long_term_errors: {confabulation_rate: 0.3, repetition_rate: 0.5}
+    language_model:
+      syntax: "simple"           # telegraphic, normal, paraphasic
+      word_finding_pause_prob: 0.4
+      neologism_rate: 0.0
+    motor_model:                  # only for text input
+      tremor_type: null
+      micrographia: false
+      typing_error_rate: 0.0
+  emotional_profile:
+    baseline_mood: "anxious"
+    mood_volatility: 0.5
+    rejection_sensitivity: true
+  health_state:
+    medications: [donepezil, memantine]
+    allergies: [penicillin]
+    chronic_conditions: [hypertension]
+    on_off_state: null            # for PD
+  tool_preferences:
+    calendar: True
+    reminders: "simple_audio"
+  wearables:
+    heart_rate: True
+    sleep_hours: True
+    movement_avg_minute: False
+    movement_avg_hour: True 
+    movement_avg_day: True
+  physical rehabilation: None
+  caregiver: None  
+  biography:
+    A 50 year old medical doctor. Single. Active, working, doing daily cardio exercises and swimming. 
+    Head a father with Alzheimer's disease, died at 85. Reads books on Alzheimer's.

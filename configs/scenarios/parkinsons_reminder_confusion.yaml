@@ -1,0 +1,42 @@
+scenario_id: pd_reminder_confusion
+condition: Parkinson's disease
+description: Patient-led reminder and memory scenario around a family event and medication timing.
+opening_mode: patient
+steps:
+  - step_id: family_event_memory
+    goal_id: remember_recital
+    patient_template: My granddaughter's piano recital is next Friday, and I do not want to forget it again. Can you put it on my calendar?
+    user_tags:
+      - MEMORY-UPDATE
+      - TOOL-CALENDAR
+    assistant_tags_expected:
+      - ASSIST-CONFIRM-ACTION
+      - ASSIST-CLARIFY
+    sentence_tags:
+      - sentence_index: 0
+        tags:
+          - MEMORY-UPDATE
+          - TOOL-CALENDAR
+    memory_updates:
+      granddaughter_event: piano_recital_next_friday
+  - step_id: medication_confusion
+    goal_id: evening_medication_support
+    patient_template: Also, later tonight please remind me about {first_medication}. When the tremor gets worse I start second-guessing whether I took it.
+    user_tags:
+      - TOOL-REMINDER
+      - MEMORY-RECALL
+      - NOISE-AFFECTIVE
+    assistant_tags_expected:
+      - ASSIST-EMPATHY
+      - ASSIST-CONFIRM-ACTION
+      - ASSIST-CLARIFY
+    sentence_tags:
+      - sentence_index: 0
+        tags:
+          - TOOL-REMINDER
+      - sentence_index: 1
+        tags:
+          - MEMORY-RECALL
+          - NOISE-AFFECTIVE
+    physiological_updates:
+      tremor_level: moderate

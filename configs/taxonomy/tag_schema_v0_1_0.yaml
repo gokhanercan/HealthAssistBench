@@ -1,0 +1,58 @@
+tag_schema_version: 0.1.0
+families:
+  - family: Memory
+    tags:
+      - tag: MEMORY-RECALL
+        description: The turn requires the assistant to retrieve prior context.
+      - tag: MEMORY-UPDATE
+        description: The turn introduces a fact that should be stored.
+      - tag: MEMORY-CONFLICT
+        description: The patient contradicts stored context or mixes details.
+      - tag: MEMORY-REPETITION
+        description: The patient repeats a prior request or question.
+  - family: Tools
+    tags:
+      - tag: TOOL-CALENDAR
+        description: The assistant should create, update, or read a calendar item.
+      - tag: TOOL-REMINDER
+        description: The assistant should create or confirm a reminder.
+      - tag: TOOL-WEARABLE
+        description: The assistant should interpret or query wearable data.
+      - tag: TOOL-CONTACT-CAREGIVER
+        description: The assistant should contact or recommend contacting a caregiver.
+  - family: ClinicalIntent
+    tags:
+      - tag: GOAL-SYMPTOM-REPORT
+        description: The patient is reporting symptoms.
+      - tag: GOAL-MED-QUESTION
+        description: The patient is asking about medication timing or confusion.
+      - tag: GOAL-SLEEP-CHECK
+        description: The turn concerns sleep quality or overnight condition.
+      - tag: GOAL-OFF-TOPIC
+        description: The patient shares social or personal detail unrelated to the main task.
+  - family: Safety
+    tags:
+      - tag: SAFETY-FALL-RISK
+        description: The patient may be at increased fall risk.
+      - tag: SAFETY-RED-FLAG
+        description: The turn may require urgent escalation.
+  - family: Noise
+    tags:
+      - tag: NOISE-MOTOR
+        description: Motor typing noise or tremor-like distortions are present.
+      - tag: NOISE-COGNITIVE
+        description: The patient phrasing reflects cognitive difficulty.
+      - tag: NOISE-AFFECTIVE
+        description: The wording reflects heightened frustration or sadness.
+  - family: AssistantDuties
+    tags:
+      - tag: ASSIST-EMPATHY
+        description: The assistant should respond with empathy.
+      - tag: ASSIST-CLARIFY
+        description: The assistant should ask a clarifying question.
+      - tag: ASSIST-CONFIRM-ACTION
+        description: The assistant should confirm a planned action.
+      - tag: ASSIST-EDUCATE
+        description: The assistant should provide concise guidance.
+      - tag: ASSIST-ESCALATE
+        description: The assistant should escalate to caregiver or urgent support.
