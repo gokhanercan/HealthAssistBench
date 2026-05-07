@@ -119,5 +119,56 @@ def main() -> None:
         trace("--score not set: skipping judge scoring")
 
 
-if __name__ == "__main__":
+PERSONA_PD = "configs/personas/parkinsons_retired_teacher.yaml"
+PERSONA_ALZ = "configs/personas/alzheimers_former_engineer.yaml"
+SCENARIO_PD_MORNING = "configs/scenarios/parkinsons_morning_checkin.yaml"
+SCENARIO_PD_REMINDER = "configs/scenarios/parkinsons_reminder_confusion.yaml"
+SCENARIO_ALZ_BIRTHDAY = "configs/scenarios/alzheimers_birthday_reminder.yaml"
+SCENARIO_ALZ_EVENING = "configs/scenarios/alzheimers_evening_confusion.yaml"
+TAXONOMY = "configs/taxonomy/tag_schema_v0_1_0.yaml"
+OLLAMA_MODEL = "llama3.1:8b"
+OLLAMA_HOST = "http://localhost:11434"
+
+
+def run(
+    *,
+    persona: str,
+    scenario: str,
+    taxonomy: str = TAXONOMY,
+    ollama_model: str | None = None,
+    ollama_host: str = OLLAMA_HOST,
+    score: bool = True,
+) -> None:
+    """Invoke main() with explicit args by overriding sys.argv (bypasses CLI)."""
+    import sys
+    argv = [
+        sys.argv[0],
+        "--persona", persona,
+        "--scenario", scenario,
+        "--taxonomy", taxonomy,
+        "--ollama-host", ollama_host,
+    ]
+    if ollama_model:
+        argv += ["--ollama-model", ollama_model]
+    if score:
+        argv += ["--score"]
+    sys.argv = argv
     main()
+
+
+if __name__ == "__main__":
+    import sys
+
+    # CLI args provided -> use the argparse path (full control from terminal).
+    # No CLI args -> pick exactly ONE call below by uncommenting it.
+    if len(sys.argv) > 1:
+        main()
+    else:
+        # run(persona=PERSONA_PD,  scenario=SCENARIO_PD_MORNING,   ollama_model=OLLAMA_MODEL, score=True)
+        run(persona=PERSONA_ALZ,  scenario=SCENARIO_PD_REMINDER,  ollama_model=OLLAMA_MODEL, score=True)
+        # run(persona=PERSONA_ALZ, scenario=SCENARIO_ALZ_BIRTHDAY, ollama_model=OLLAMA_MODEL, score=True)
+        # run(persona=PERSONA_ALZ, scenario=SCENARIO_ALZ_EVENING,  ollama_model=OLLAMA_MODEL, score=True)
+        # run(persona=PERSONA_PD,  scenario=SCENARIO_PD_MORNING,   ollama_model=None,         score=True)
+        # run(persona=PERSONA_PD,  scenario=SCENARIO_PD_REMINDER,  ollama_model=None,         score=True)
+        # run(persona=PERSONA_ALZ, scenario=SCENARIO_ALZ_BIRTHDAY, ollama_model=None,         score=True)
+        # run(persona=PERSONA_ALZ, scenario=SCENARIO_ALZ_EVENING,  ollama_model=None,         score=True)
